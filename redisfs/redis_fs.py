@@ -49,7 +49,7 @@ class RFS(object):
 
     def GetFolder(self, path):
         # Make sure folder exists.
-        t = self.conn.type(path)
+        t = self.conn.type(path).decode("utf-8")
         if t == "set":
             return RFolder(path, self.conn)
         else:
@@ -57,7 +57,7 @@ class RFS(object):
 
     def GetFile(self, path):
         # Make sure file exists.
-        t = self.conn.type(path)
+        t = self.conn.type(path).decode("utf-8")
         if t == "string":
             return RFile(path, self.conn)
         else:
@@ -65,7 +65,7 @@ class RFS(object):
 
     def GetItem(self, path):
         # Look up path and its type.
-        t = self.conn.type(path)
+        t = self.conn.type(path).decode("utf-8")
         if t == "set":
             return RFolder(path, self.conn)
         elif t == "string":

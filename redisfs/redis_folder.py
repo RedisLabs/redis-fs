@@ -19,7 +19,7 @@ class RFolder(object):
         dir = os.path.dirname(self.path)
 
         # Make sure folder exists.
-        t = self.conn.type(dir)
+        t = self.conn.type(dir).decode("utf-8")
         if t == "set":
             return RFolder(dir, self.conn)
         else:
@@ -30,8 +30,9 @@ class RFolder(object):
         content = []
         members = self.conn.smembers(self.path)
         for member in members:
+            member = member.decode("utf-8")
             member_full_path = os.path.join(self.path, member)
-            t = self.conn.type(member_full_path)
+            t = self.conn.type(member_full_path).decode("utf-8")
             if t == "string":
                 content.append(RFile(member_full_path, self.conn))
             elif t == "set":

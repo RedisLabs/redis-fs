@@ -18,7 +18,7 @@ class RFile(object):
         dir = os.path.dirname(self.path)
 
         # Make sure folder exists.
-        t = self.conn.type(dir)
+        t = self.conn.type(dir).decode("utf-8")
         if t == "set":
             from .redis_folder import RFolder
             return RFolder(dir, self.conn)
