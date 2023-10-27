@@ -45,7 +45,7 @@ class RFolder(object):
                     continue
 
         # Sort content.
-        content.sort(key=lambda x: x.Name, reverse=True)
+        content.sort(key=lambda x: x.Name(), reverse=True)
         return content
 
     def AddItem(self, item):
